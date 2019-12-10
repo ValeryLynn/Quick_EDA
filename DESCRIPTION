@@ -15,5 +15,6 @@ RoxygenNote: 7.0.2
 Suggests: 
     knitr,
     rmarkdown
+Depends: gplots, ggplot2, dplyr, stats
 VignetteBuilder: knitr
-imports: 
+imports: gplots, ggplot2, dplyr, stats
