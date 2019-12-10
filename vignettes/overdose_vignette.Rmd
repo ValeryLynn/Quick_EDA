@@ -1,0 +1,108 @@
+---
+title: "Quick EDA for Numerical Datasets"
+author: "Valery Lynn"
+date: 
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{quickeda_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Overview
+
+The quickeda package is designed to take in a dataframe with mixed data types and produce an initial numerical exploratory data analysis (EDA). There are 7 functions that will produce individual sections of an EDA, and one function that will run all of them at once for quick analysis. Functions requiring numerical data types will automatically select the numerical columns from a dataframe, no initial slicing is necessary.
+
+## Functions
+
+The functions are as follows:
+
+1. data_describe(df):  This function prints out the dataframe shape and the column names.
+1. data_types(df):  This function prints out the data types for the variables in a dataframe.
+1. data_stats(df):  This function prints out descriptive statistics for the variables in a dataframe.
+1. make_df(df):  This function creates a numeric dataframe.
+1. dens_plots(df):  This function prints kernel density plots for all numeric variables.
+1. qq_plots(df):  This function prints QQ-plots for all numeric variables
+1. correlations(df):  This function produces a correlation pairs table of all numerical variables in a dataframe.
+1. quick_eda(df):  This function calls all of the above functions to produce an initial EDA.
+
+## Example Data
+The "overdose" data is a cleaned data set of county level data of drug overdose mortality rates and social, economic, and demographic indicators. Raw data used to assemble this data were acquired from "The County Health Rankings" dataset, a collaboration between the Robert Wood Johnson Foundation and the University of Wisconsin Population Health Institute.This database was built predominantly from the following:  The Behavioral Risk Factor Surveillance System (BRFSS), the National Center for Health Statistics, and the CDC WONDER mortality data. 
+ 
+The database for the rankings is available for downloading as an Excel spreadsheet at:  http://www.countyhealthrankings.org/explore-health-rankings/rankings-data-documentation 
+ 
+For a full account of how data for each variable was attained see: http://www.countyhealthrankings.org/sites/default/files/resources/2017_Measures_DataSources Years.pdf 
+ 
+Variables are all reported as percentages, rates per 100,000, ratios, or similar population adjusted measures. After data cleaning, they are all of numerical type float or integer. There are 74 variables in the dataset, however only 10 are selected here to showcase the package. 
+
+## How to install the R package
+
+The following command will download the quickeda package from Github:
+
+devtools::install_github("ValeryLynn/Quick_EDA")
+
+## Demonstration of Functions
+
+```{r}
+library(quickeda)
+```
+
+```{r}
+#Get data
+overdose <- read.csv(file="overdose.csv", header=TRUE, sep=",")
+df_od <- overdose[,1:10]
+head(df_od)
+```
+
+## Methods
+
+### Initial look at the data:  data_describe(df)
+```{r}
+data_describe(df_od)
+```
+
+### A check of the data types: data_types(overdose)
+```{r}
+data_types(df_od)
+```
+
+### Descriptive statistics
+```{r}
+data_stats(df_od)
+```
+
+### Select only numeric columns
+```{r}
+df = make_df(df_od)
+head(df)
+```
+
+### Kernel density plots
+```{r}
+dens_plots(df_od)
+```
+
+### QQ-Plots
+```{r}
+qq_plots(df_od)
+```
+
+### Correlation pairs table
+```{r}
+correlations(df_od)
+```
+
+
+### Output of entire EDA
+```{r}
+quick_eda(df_od) 
+```
+
