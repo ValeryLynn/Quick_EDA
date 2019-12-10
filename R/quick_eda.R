@@ -8,8 +8,7 @@
 ##' @return returns an exploratory data analysis for all variables in a dataframe
 ##' @author Valery Lynn
 ##' @examples quick_eda(df)
-
-
+##' @export
 quick_eda <- function(df){
 
   data_describe(df)

@@ -6,16 +6,11 @@
 ##' @return returns the output of the step function (anova)
 ##' @author Valery Lynn
 ##' @examples qq_plots(df)
-
-
+##' @import ggplot2
+##' @export
 qq_plots <- function(df){
-  ggplot2::qplot
-
-  #This calls a function to use only numeric columns
   df1 <- make_df(df)
-
   for (i in colnames(df1)){
-
     print(qplot(sample = df1[,i], data = df1) + xlab(i))
   }
   return()

@@ -6,17 +6,12 @@
 ##' @return prints a kernel density plot for every numeric variable
 ##' @author Valery Lynn
 ##' @examples dens_plots(df)
-
+##' @import ggplot2
+##' @export
 dens_plots <- function(df){
-  ggplot2::ggplot()
-  ggplot2::geom_density()
-
-  #This calls a function to use only numeric columns
   df1 <- make_df(df)
-
   for (i in colnames(df1)){
     print(ggplot(data = df1) + geom_density(aes(x=df1[,i])) + xlab(i))
-
   }
   return()
 }

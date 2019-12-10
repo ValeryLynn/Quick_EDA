@@ -6,15 +6,10 @@
 ##' @return returns a dataframe with only numeric columns
 ##' @author Valery Lynn
 ##' @examples make_df(df)
-
-
-#This function creates a numeric dataframe
-make_df <<- function(df){
-  library(tidyverse)
-  dplyr::select_if
-
-  df1 <<- df %>%
+##' @import dplyr
+##' @export
+make_df <- function(df){
+  df1 <- df %>%
     select_if(is.numeric)
-
-  return(print(head(df1)))
+  return(df1)
 }

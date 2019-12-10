@@ -5,9 +5,8 @@
 ##' @return a printout of the dataframe data types for all variables
 ##' @author Valery Lynn
 ##' @examples data_types(df)
-
-#This function prints out the data types for the variables in a dataframe
-data_types <<- function(df){
+##' @export
+data_types <- function(df){
   cat('\nData types:\n')
   return(print(sapply(df, class)))
 

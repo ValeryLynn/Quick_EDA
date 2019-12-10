@@ -6,13 +6,12 @@
 ##' @return prints a correlation matrix
 ##' @author Valery Lynn
 ##' @examples correlations(df)
-
-correlations <<- function(df){
-  #This calls a function to use only numeric columns
-  df1 <<-  make_df(df)
-  cat('\nCorrelations:\n' )
+##' @import stats
+##' @export
+correlations <- function(df){
+  df1 <-  make_df(df)
+  cat('\nCorrelations:\n')
   m <- cor(df1)
   zdf <- as.data.frame(as.table(m))
-
   return(zdf)
 }
